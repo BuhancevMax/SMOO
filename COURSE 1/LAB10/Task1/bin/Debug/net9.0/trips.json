@@ -1,0 +1,32 @@
+[
+  {
+    "Destination": "Dnipro",
+    "TrainNumber": 591,
+    "DepartureTime": "2022-03-15T00:00:00",
+    "Stations": [
+      "Lviv",
+      "Kharkiv",
+      "Dnipro"
+    ]
+  },
+  {
+    "Destination": "Kyiv",
+    "TrainNumber": 592,
+    "DepartureTime": "2022-03-16T00:00:00",
+    "Stations": [
+      "Dnipro",
+      "Lviv",
+      "Kyiv"
+    ]
+  },
+  {
+    "Destination": "Lviv",
+    "TrainNumber": 593,
+    "DepartureTime": "2022-03-17T00:00:00",
+    "Stations": [
+      "Kyiv",
+      "Dnipro",
+      "Lviv"
+    ]
+  }
+]

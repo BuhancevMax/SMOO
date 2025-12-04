@@ -1,0 +1,40 @@
+<Window x:Class="Task1.Task5Window"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:Task1"
+        mc:Ignorable="d"
+        Title="Завдання 5" Height="250" Width="400">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/> <RowDefinition Height="Auto"/> <RowDefinition Height="*"/>    </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/> <ColumnDefinition Width="*"/>    </Grid.ColumnDefinitions>
+
+        <Label Content="Вага у фунтах:" 
+               Grid.Row="0" Grid.Column="0" 
+               VerticalAlignment="Center" 
+               Margin="5"/>
+
+        <TextBox x:Name="PoundsTextBox" 
+                 Grid.Row="0" Grid.Column="1" 
+                 VerticalAlignment="Center" 
+                 Margin="5"
+                 FontSize="14"/>
+
+        <Button Content="Розрахувати" 
+                Grid.Row="1" Grid.ColumnSpan="2" 
+                Margin="5,15,5,5" 
+                Padding="10,5" 
+                Click="CalculateButton_Click"/>
+
+        <TextBlock x:Name="ResultTextBlock" 
+                   Grid.Row="2" Grid.ColumnSpan="2" 
+                   Margin="5" 
+                   FontSize="18" 
+                   FontWeight="Bold" 
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Center"/>
+    </Grid>
+</Window>

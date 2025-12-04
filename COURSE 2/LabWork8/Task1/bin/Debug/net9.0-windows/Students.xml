@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Students xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Student>
+    <FirstName>Макс</FirstName>
+    <LastName>Буханцев</LastName>
+    <Age>19</Age>
+    <Gender>Чоловіча</Gender>
+  </Student>
+  <Student>
+    <FirstName>Иван</FirstName>
+    <LastName>Иванов </LastName>
+    <Age>33</Age>
+    <Gender>Чоловіча</Gender>
+  </Student>
+  <Student>
+    <FirstName>Петя</FirstName>
+    <LastName>Дядя</LastName>
+    <Age>42</Age>
+    <Gender>Чоловіча</Gender>
+  </Student>
+  <Student>
+    <FirstName>2312</FirstName>
+    <LastName>123</LastName>
+    <Age>23</Age>
+    <Gender>Чоловіча</Gender>
+  </Student>
+</Students>

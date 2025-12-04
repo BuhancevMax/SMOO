@@ -1,0 +1,105 @@
+<Window x:Class="Task1.EditCandidateWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:Task1"
+        mc:Ignorable="d"
+        Title="EditCandidateWindow" Height="420" Width="450"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Margin="0,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="П.І.П.:" Margin="0,0,5,5" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="0" Grid.Column="1"
+                     Text="{Binding FullName, UpdateSourceTrigger=PropertyChanged}"
+                     Margin="0,0,0,5"/>
+            
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Дата народження:" Margin="0,0,5,5" VerticalAlignment="Center"/>
+            <DatePicker Grid.Row="1" Grid.Column="1"
+                        SelectedDate="{Binding BirthDate}"
+                        Margin="0,0,0,5"/>
+            
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Освіта:" Margin="0,0,5,5" VerticalAlignment="Center"/>
+            <ComboBox Grid.Row="2" Grid.Column="1"
+                      SelectedValue="{Binding Education}"
+                      SelectedValuePath="Content"
+                      Margin="0,0,0,5">
+                <ComboBoxItem Content="Середня"/>
+                <ComboBoxItem Content="Середня спеціальна"/>
+                <ComboBoxItem Content="Вища"/>
+            </ComboBox>
+            
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="Англійська:" Margin="0,0,5,5" VerticalAlignment="Center"/>
+            <ComboBox Grid.Row="3" Grid.Column="1"
+                      SelectedValue="{Binding EnglishLevel}"
+                      SelectedValuePath="Content"
+                      Margin="0,0,0,5">
+                <ComboBoxItem Content="Не знаю"/>
+                <ComboBoxItem Content="Читаю та перекладаю зі словником"/>
+                <ComboBoxItem Content="Володію вільно"/>
+            </ComboBox>
+            
+            <TextBlock Grid.Row="4" Grid.Column="0" Text="Німецька:" Margin="0,0,5,5" VerticalAlignment="Center"/>
+            <ComboBox Grid.Row="4" Grid.Column="1"
+                      SelectedValue="{Binding GermanLevel}"
+                      SelectedValuePath="Content"
+                      Margin="0,0,0,5">
+                <ComboBoxItem Content="Не знаю"/>
+                <ComboBoxItem Content="Читаю та перекладаю зі словником"/>
+                <ComboBoxItem Content="Володію вільно"/>
+            </ComboBox>
+            
+            <TextBlock Grid.Row="5" Grid.Column="0" Text="Французька:" Margin="0,0,5,5" VerticalAlignment="Center"/>
+            <ComboBox Grid.Row="5" Grid.Column="1"
+                      SelectedValue="{Binding FrenchLevel}"
+                      SelectedValuePath="Content"
+                      Margin="0,0,0,5">
+                <ComboBoxItem Content="Не знаю"/>
+                <ComboBoxItem Content="Читаю та перекладаю зі словником"/>
+                <ComboBoxItem Content="Володію вільно"/>
+            </ComboBox>
+            
+            <TextBlock Grid.Row="6" Grid.Column="0" Text="Володію комп'ютером:" Margin="0,0,5,5" VerticalAlignment="Center"/>
+            <CheckBox Grid.Row="6" Grid.Column="1"
+                      IsChecked="{Binding HasComputerSkills}"
+                      Margin="0,0,0,5"/>
+            
+            <TextBlock Grid.Row="7" Grid.Column="0" Text="Стаж (років):" Margin="0,0,5,5" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="7" Grid.Column="1"
+                     Text="{Binding ExperienceYears}"
+                     Margin="0,0,0,5"/>
+            
+            <TextBlock Grid.Row="8" Grid.Column="0" Text="Рекомендації:" Margin="0,0,5,0" VerticalAlignment="Center"/>
+            <CheckBox Grid.Row="8" Grid.Column="1"
+                      IsChecked="{Binding HasRecommendations}"/>
+        </Grid>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="OK" Width="80" Margin="0,0,5,0" Click="Ok_Click"/>
+            <Button Content="Скасувати" Width="80" Click="Cancel_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

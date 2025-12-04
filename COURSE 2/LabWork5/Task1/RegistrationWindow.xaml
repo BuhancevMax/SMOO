@@ -1,0 +1,69 @@
+<Window x:Class="Task1.RegistrationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:Task1"
+        mc:Ignorable="d"
+        Title="Реєстрація" Height="650" Width="450" 
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#a8ff78" Offset="0"/>
+                <GradientStop Color="#78ffd6" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <Border Background="White" CornerRadius="15" Margin="30" Padding="20">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="20" ShadowDepth="5" Opacity="0.2"/>
+            </Border.Effect>
+            
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel>
+                    <TextBlock Text="Новий акаунт" FontSize="24" FontWeight="Bold" Foreground="#333" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+
+                    <TextBlock Text="Логін" Foreground="Gray"/>
+                    <TextBox x:Name="RegLogin"/>
+
+                    <TextBlock Text="Пароль" Foreground="Gray"/>
+                    <TextBox x:Name="RegPass"/>
+
+                    <TextBlock Text="Ім'я" Foreground="Gray"/>
+                    <TextBox x:Name="RegName"/>
+
+                    <TextBlock Text="Прізвище" Foreground="Gray"/>
+                    <TextBox x:Name="RegSurname"/>
+                    
+                    <TextBlock Text="Стать" Foreground="Gray" Margin="0,0,0,5"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
+                        <RadioButton x:Name="RbMale" Content="Чоловік" IsChecked="True" Margin="0,0,15,0" VerticalAlignment="Center"/>
+                        <RadioButton x:Name="RbFemale" Content="Жінка" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    
+                    <Button Content="Створити акаунт" 
+                            Click="BtnSave_Click" 
+                            Style="{StaticResource ModernBtn}"
+                            Height="55" 
+                            FontSize="18" 
+                            FontWeight="ExtraBold"
+                            Margin="0,25,0,10"
+                            Foreground="White">
+    
+                        <Button.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                <GradientStop Color="#a8ff78" Offset="0"/> <GradientStop Color="#78ffd6" Offset="1"/> </LinearGradientBrush>
+                        </Button.Background>
+
+                        <Button.Effect>
+                            <DropShadowEffect BlurRadius="15" ShadowDepth="3" Direction="270" Opacity="0.4" Color="#78ffd6"/>
+                        </Button.Effect>
+                    </Button>
+                    <Button Content="Назад" Background="Transparent" Foreground="Gray" Click="BtnBack_Click"/>
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+    </Grid>
+</Window>

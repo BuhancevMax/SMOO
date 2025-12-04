@@ -1,0 +1,80 @@
+﻿<Window x:Class="Task1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Task1"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid Margin="10">
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="2*"/>
+        <ColumnDefinition Width="*"/>
+    </Grid.ColumnDefinitions>
+        
+    <GroupBox Header="Кандидати" Grid.Column="0" Margin="0,0,10,0">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            
+            <ListView ItemsSource="{Binding CandidatesView}"
+                      SelectedItem="{Binding SelectedCandidate}"
+                      Grid.Row="0">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="П.І.П."
+                                        DisplayMemberBinding="{Binding FullName}" />
+                        <GridViewColumn Header="Рік нар."
+                                        DisplayMemberBinding="{Binding BirthYear}" />
+                        <GridViewColumn Header="Освіта"
+                                        DisplayMemberBinding="{Binding Education}" />
+                        <GridViewColumn Header="Стаж, років"
+                                        DisplayMemberBinding="{Binding ExperienceYears}" />
+                        <GridViewColumn Header="Рекомендації"
+                                        DisplayMemberBinding="{Binding HasRecommendations}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            
+            <StackPanel Grid.Row="1"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Margin="0,5,0,0">
+                <Button Content="Додати" Width="90" Margin="0,0,5,0"
+                        Click="Add_Click" />
+                <Button Content="Змінити" Width="90" Margin="0,0,5,0"
+                        Click="Edit_Click" />
+                <Button Content="Видалити" Width="90"
+                        Click="Delete_Click" />
+            </StackPanel>
+        </Grid>
+    </GroupBox>
+        
+    <GroupBox Header="Фільтр" Grid.Column="1">
+        <StackPanel Margin="10">
+
+            <CheckBox Content="Лише з досвідом роботи"
+                      IsChecked="{Binding OnlyWithExperience, Mode=TwoWay}" />
+
+            <CheckBox Content="Лише з рекомендаціями"
+                      Margin="0,5,0,0"
+                      IsChecked="{Binding OnlyWithRecommendations, Mode=TwoWay}" />
+
+            <TextBlock Text="Освіта:" Margin="0,10,0,0"/>
+            <ComboBox SelectedValue="{Binding EducationFilter, Mode=TwoWay}"
+                      SelectedValuePath="Content">
+                <ComboBoxItem Content="Уся"/>
+                <ComboBoxItem Content="Середня"/>
+                <ComboBoxItem Content="Середня спеціальна"/>
+                <ComboBoxItem Content="Вища"/>
+            </ComboBox>
+
+            <Button Content="Скинути фільтр"
+                    Margin="0,15,0,0"
+                    Click="ResetFilter_Click"/>
+        </StackPanel>
+    </GroupBox>
+</Grid>
+</Window>

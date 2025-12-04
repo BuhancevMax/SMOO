@@ -1,0 +1,100 @@
+﻿<Window x:Class="Task1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:models="clr-namespace:Task1.Models"
+        mc:Ignorable="d"
+        Title="Студенти" Height="450" Width="800">
+    <Window.DataContext>
+        <models:MainViewModel/>
+    </Window.DataContext>
+
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <ListView x:Name="StudentsList"
+                  Grid.Column="0"
+                  ItemsSource="{Binding Students}"
+                  SelectedItem="{Binding SelectedStudent, Mode=TwoWay}"
+                  SelectionMode="Extended"
+                  AlternationCount="2">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Background" Value="White"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    <Style.Triggers>
+                        <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                            <Setter Property="Background" Value="#FFEFEFEF"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListView.ItemContainerStyle>
+            
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" Margin="4">
+                        <TextBlock Text="{Binding FullName}"
+                                   FontWeight="Bold"
+                                   Margin="0,0,10,0"/>
+                        <TextBlock Text="{Binding AgeDisplay}"
+                                   Margin="0,0,10,0"/>
+                        <TextBlock Text="{Binding Gender}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            
+            <ListView.Style>
+                <Style TargetType="ListView">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ListView">
+                                <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}">
+                                    <ScrollViewer Focusable="false">
+                                        <ItemsPresenter/>
+                                    </ScrollViewer>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="HasItems" Value="False">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ListView">
+                                        <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                                BorderThickness="{TemplateBinding BorderThickness}">
+                                            <TextBlock Text="Список студентів порожній. Додайте запис."
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"
+                                                       FontStyle="Italic"
+                                                       Foreground="Gray"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListView.Style>
+        </ListView>
+        
+        <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Top">
+            <Button Content="Додати..."
+                    Width="130" Margin="0,0,0,5"
+                    Click="Add_Click"/>
+            <Button Content="Редагувати..."
+                    Width="130" Margin="0,0,0,5"
+                    Click="Edit_Click"
+                    IsEnabled="{Binding HasSelection}"/>
+            <Button Content="Видалити"
+                    Width="130"
+                    Click="Delete_Click"
+                    IsEnabled="{Binding HasStudents}"/>
+        </StackPanel>
+    </Grid>
+</Window>
