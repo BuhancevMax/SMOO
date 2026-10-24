@@ -1,0 +1,101 @@
+<Window x:Class="Task1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Бій кланів" Height="780" Width="1080"
+        WindowStartupLocation="CenterScreen">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <!-- Ліва колонка: Ігрове поле 10x10 -->
+            <ColumnDefinition Width="680" />
+            <!-- Права колонка: Панель інформації та керування -->
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Шахова дошка 10x10 -->
+        <Border Grid.Column="0" BorderBrush="Black" BorderThickness="2" Margin="0,0,10,0">
+            <ItemsControl ItemsSource="{Binding Cells}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Rows="10" Columns="10" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Command="{Binding ClickCommand}"
+                                Background="{Binding BackgroundColor}"
+                                BorderBrush="{Binding BorderColor}"
+                                BorderThickness="2"
+                                Margin="1"
+                                ToolTip="{Binding ToolTipText}"
+                                Padding="2">
+                            <TextBlock Text="{Binding DisplayText}" 
+                                       TextWrapping="Wrap" 
+                                       TextAlignment="Center" 
+                                       FontSize="10" 
+                                       FontWeight="Bold" />
+                        </Button>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
+
+        <!-- Бічна панель -->
+        <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <!-- Поточний статус гри -->
+                <GroupBox Header="Статус битви" Margin="0,0,0,8" Padding="5">
+                    <StackPanel>
+                        <TextBlock Text="{Binding CurrentTurnInfo}" FontWeight="Bold" FontSize="14" Margin="0,0,0,8" />
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="0" Content="Кінець ходу" Command="{Binding EndTurnCommand}" Height="30" Margin="0,0,4,0" FontWeight="SemiBold" />
+                            <Button Grid.Column="1" Content="Нова гра" Command="{Binding NewGameCommand}" Height="30" Margin="4,0,0,0" />
+                        </Grid>
+                    </StackPanel>
+                </GroupBox>
+
+                <!-- Глава клану (Singleton) -->
+                <GroupBox Header="Глава клану (Singleton)" Margin="0,0,0,8" Padding="5">
+                    <TextBlock Text="{Binding LeaderInfo}" TextWrapping="Wrap" FontSize="11" />
+                </GroupBox>
+
+                <!-- Інформація про вибраного бійця -->
+                <GroupBox Header="Вибраний боєць" Margin="0,0,0,8" Padding="5">
+                    <TextBlock Text="{Binding SelectedUnitInfo}" TextWrapping="Wrap" FontSize="11" />
+                </GroupBox>
+
+                <!-- Кнопки керування кроком (D-Pad) -->
+                <GroupBox Header="Керування пересуванням" Margin="0,0,0,8" Padding="5">
+                    <Grid Width="160" Height="100">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Button Grid.Row="0" Grid.Column="1" Content="▲" Command="{Binding MoveUpCommand}" FontWeight="Bold" />
+                        <Button Grid.Row="1" Grid.Column="0" Content="◀" Command="{Binding MoveLeftCommand}" FontWeight="Bold" />
+                        <Button Grid.Row="1" Grid.Column="2" Content="▶" Command="{Binding MoveRightCommand}" FontWeight="Bold" />
+                        <Button Grid.Row="2" Grid.Column="1" Content="▼" Command="{Binding MoveDownCommand}" FontWeight="Bold" />
+                    </Grid>
+                </GroupBox>
+
+                <!-- Журнал подій -->
+                <GroupBox Header="Журнал бою" Margin="0,0,0,0" Padding="5" Height="180">
+                    <ListBox ItemsSource="{Binding GameLogs}" FontSize="10" />
+                </GroupBox>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>
